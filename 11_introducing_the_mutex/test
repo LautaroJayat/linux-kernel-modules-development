@@ -1,0 +1,21 @@
+#! /bin/python3
+import os
+device = "/dev/skull0"
+pageSize = 16
+
+fd = os.open(device, os.O_RDWR)
+os.write(fd, b"hey!\n")
+os.lseek(fd, pageSize, 0)
+os.write(fd, b"ho!\n")
+
+os.lseek(fd, pageSize*2, 0)
+os.write(fd, b"let's go!\n")
+
+os.lseek(fd, 0, 0)
+
+i = 0
+while i<3:
+    b = os.read(fd, 16)
+#       print("\n",b,"\n")
+    i+=1
+os.close(fd)
