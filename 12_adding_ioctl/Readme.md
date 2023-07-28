@@ -183,4 +183,5 @@ int main(void) {
 ```
 
 And indeed, it seems to work:
+
 ![ioctl example](ioctl.jpg)
