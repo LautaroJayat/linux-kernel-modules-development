@@ -182,6 +182,10 @@ int main(void) {
 }
 ```
 
-And indeed, it seems to work:
+And indeed, it seems to work
+We cant change the quantum size if we are not root:
 
 ![ioctl example](ioctl.jpg)
+
+But we can when running the program with sudo:
+![ioctl example II](./sudoioctl.png)
