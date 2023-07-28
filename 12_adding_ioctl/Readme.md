@@ -188,4 +188,5 @@ We cant change the quantum size if we are not root:
 ![ioctl example](ioctl.jpg)
 
 But we can when running the program with sudo:
+
 ![ioctl example II](./sudoioctl.png)
