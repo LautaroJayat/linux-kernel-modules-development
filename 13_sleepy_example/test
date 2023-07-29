@@ -1,0 +1,23 @@
+#! /bin/python3
+import os
+from multiprocessing import Process
+def read():
+    fd = os.open("/dev/sleepy0", os.O_RDONLY)
+    print("USERLAND | About to read")
+    os.read(fd, 1)
+    print("USERLAND | Read done")
+    os.close(fd)
+
+def write():
+    fd = os.open("/dev/sleepy0", os.O_WRONLY)
+    print("USERLAND | About to write")
+    os.write(fd, b"1")
+    print("USERLAND | Write done")
+    os.close(fd)
+
+r = Process(target=read)
+w = Process(target=write)
+
+r.start()
+w.start()
+r.join()

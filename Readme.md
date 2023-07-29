@@ -30,8 +30,9 @@ This series of experiments does not start from building a custom kernel image, b
 | 8     | [Writing to private_data](./08_write_fop/)                                             | writing to a fixed size buffer stored in private_data                                                           |
 | 9     | [Dynamically allocating memory from the device](./09_dynamically_allocating_a_buffer/) | allocating, reading and resizing from our file operations                                                       |
 | 10    | [Implementing an interesting memory management strategy](./10_simple_pagination/)      | Implementing a memory management strategy similar to the one used in chapter 3 of the Linux Device Drivers Book |
-| 11    | [Introducing the mutex](./11_introducing_the_mutex/)                                   | Implementing a simple mutex to avoid race conditions when multiple processes try to read/write into the device  |
+| 11    | [Concurrency control - Introducing the mutex](./11_introducing_the_mutex/)             | Implementing a simple mutex to avoid race conditions when multiple processes try to read/write into the device  |
 | 12    | [Intorucing IOCTL](./12_adding_ioctl/)                                                 | Introducing a simple implementation of ioctl to demostrate how it works                                         |
+| 13    | [Concurrency control - Sleep & wait queues](./13_sleepy_example/)                      | Introducing a little experiment on how wait queues work                                                         |
 
 ## Various Resources
 
