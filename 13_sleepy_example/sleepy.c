@@ -4,7 +4,7 @@
 #include <linux/types.h>
 #include <linux/fs.h>
 #include <linux/cdev.h>
-#include <linux/sched.h>  /* current and everything */
+#include <linux/sched.h>
 #include <linux/wait.h>
 #include <linux/errno.h> /* EFAULT */
 
