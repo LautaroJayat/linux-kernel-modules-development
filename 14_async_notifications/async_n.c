@@ -13,7 +13,6 @@
 static int devNum;
 static int min = 0;
 static int count = 1;
-static DECLARE_WAIT_QUEUE_HEAD(wq);
 const char* PREF = "[ async_n ] - ";
 
 
