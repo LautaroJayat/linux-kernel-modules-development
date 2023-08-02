@@ -1,0 +1,46 @@
+#! /bin/python3
+import os
+import select
+from multiprocessing import Process
+
+def rprint(text, pid):
+    print(f"\033[0;32m\nUSERLAND | READER | PID -> {pid} | {text}\n\033[0;0m")
+
+def wprint(text,pid):
+    print(f"\033[1;31m\nUSERLAND | WRITER | PID -> {pid} | {text}\n\033[0;0m")
+
+
+def read():
+    txt = ""
+    pid = os.getpid()
+    fd = os.open("/dev/polling_d0", os.O_RDONLY)
+    p = select.poll()
+    p.register(fd, select.POLLIN | select.POLLRDNORM)
+    while "Stop Reading" not in txt:
+        pollResult = p.poll(100)
+        for descriptor, Event in pollResult:
+            txt = os.read(fd, 256).decode("utf-8")
+            rprint(f"Got: '{txt}' from the device", pid)
+    rprint(f"'{txt}' was the signal to stop, now exiting", pid)
+
+def write():
+    toWrite = ["Hey! how are you?", "Stop Reading"]
+    pid = os.getpid()
+    fd = os.open("/dev/polling_d0", os.O_WRONLY)
+    p = select.poll()
+    p.register(fd, select.POLLOUT | select.POLLWRNORM)
+    i = 0
+    while i<len(toWrite) :
+        pollResult = p.poll(100)
+        for descriptor, Event in pollResult:
+            wprint(f"Writing to device", pid)
+            os.write(fd, toWrite[i].encode("utf-8"))
+            i+=1
+    
+
+r = Process(target=read)
+w = Process(target=write)
+
+r.start()
+w.start()
+r.join()

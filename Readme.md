@@ -34,6 +34,7 @@ This series of experiments does not start from building a custom kernel image, b
 | 12    | [Introducing IOCTL](./12_adding_ioctl/)                                                | Introducing a simple implementation of ioctl to demostrate how it works                                            |
 | 13    | [Concurrency control - Sleep & wait queues](./13_sleepy_example/)                      | Introducing a little experiment on how wait queues work                                                            |
 | 14    | [Asynchronous notifications](./14_async_notifications/)                                | An example on how to set asynchronous notification queues, signal from the module, and set up handlers in userland |
+| 15    | [A simple Polling callback](./15_polling/)                                             | An example on registering polling callback so we can use `poll`, `select` and `epoll` with our device              |
 
 ## Various Resources
 
