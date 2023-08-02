@@ -17,22 +17,23 @@ This series of experiments does not start from building a custom kernel image, b
 
 ## Experiments
 
-| index | title                                                                                  | contents                                                                                                        |
-| ----- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| 0     | [Hello World from the kernel](./00_hello_world/)                                       | setting up a vm, sharing files between gest and host, compiling and inserting a new module                      |
-| 1     | [Mounting and checking some info](./01_mounting_and_checking/)                         | allocating minor and major numbers, checking our char device is listed                                          |
-| 2     | [Using parameters with insmod](./02_insmod_parameters/)                                | updating module to accept parameters when mounting                                                              |
-| 3     | [The load script](./03_load_script/)                                                   | creating a simple init script to set the files for our devices                                                  |
-| 4     | [Registering File Operations](./04_registering_file_operations/)                       | setting the callbacks that will enable to interact with the module from userland                                |
-| 5     | [Simplest Open Callback](./05_simplest_open_fop/)                                      | setting private_data to file pointer and checking access mode                                                   |
-| 6     | [Simplest Read Callback](./06_simplest_read_fop/)                                      | making our device to stream a long string :)                                                                    |
-| 7     | [Reading from private_data](./07_reading_from_private_data/)                           | using the private_data field as the source of the string we are going to print                                  |
-| 8     | [Writing to private_data](./08_write_fop/)                                             | writing to a fixed size buffer stored in private_data                                                           |
-| 9     | [Dynamically allocating memory from the device](./09_dynamically_allocating_a_buffer/) | allocating, reading and resizing from our file operations                                                       |
-| 10    | [Implementing an interesting memory management strategy](./10_simple_pagination/)      | Implementing a memory management strategy similar to the one used in chapter 3 of the Linux Device Drivers Book |
-| 11    | [Concurrency control - Introducing the mutex](./11_introducing_the_mutex/)             | Implementing a simple mutex to avoid race conditions when multiple processes try to read/write into the device  |
-| 12    | [Introducing IOCTL](./12_adding_ioctl/)                                                | Introducing a simple implementation of ioctl to demostrate how it works                                         |
-| 13    | [Concurrency control - Sleep & wait queues](./13_sleepy_example/)                      | Introducing a little experiment on how wait queues work                                                         |
+| index | title                                                                                  | contents                                                                                                           |
+| ----- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| 0     | [Hello World from the kernel](./00_hello_world/)                                       | setting up a vm, sharing files between gest and host, compiling and inserting a new module                         |
+| 1     | [Mounting and checking some info](./01_mounting_and_checking/)                         | allocating minor and major numbers, checking our char device is listed                                             |
+| 2     | [Using parameters with insmod](./02_insmod_parameters/)                                | updating module to accept parameters when mounting                                                                 |
+| 3     | [The load script](./03_load_script/)                                                   | creating a simple init script to set the files for our devices                                                     |
+| 4     | [Registering File Operations](./04_registering_file_operations/)                       | setting the callbacks that will enable to interact with the module from userland                                   |
+| 5     | [Simplest Open Callback](./05_simplest_open_fop/)                                      | setting private_data to file pointer and checking access mode                                                      |
+| 6     | [Simplest Read Callback](./06_simplest_read_fop/)                                      | making our device to stream a long string :)                                                                       |
+| 7     | [Reading from private_data](./07_reading_from_private_data/)                           | using the private_data field as the source of the string we are going to print                                     |
+| 8     | [Writing to private_data](./08_write_fop/)                                             | writing to a fixed size buffer stored in private_data                                                              |
+| 9     | [Dynamically allocating memory from the device](./09_dynamically_allocating_a_buffer/) | allocating, reading and resizing from our file operations                                                          |
+| 10    | [Implementing an interesting memory management strategy](./10_simple_pagination/)      | Implementing a memory management strategy similar to the one used in chapter 3 of the Linux Device Drivers Book    |
+| 11    | [Concurrency control - Introducing the mutex](./11_introducing_the_mutex/)             | Implementing a simple mutex to avoid race conditions when multiple processes try to read/write into the device     |
+| 12    | [Introducing IOCTL](./12_adding_ioctl/)                                                | Introducing a simple implementation of ioctl to demostrate how it works                                            |
+| 13    | [Concurrency control - Sleep & wait queues](./13_sleepy_example/)                      | Introducing a little experiment on how wait queues work                                                            |
+| 14    | [Asynchronous notifications](./14_async_notifications/)                                | An example on how to set asynchronous notification queues, signal from the module, and set up handlers in userland |
 
 ## Various Resources
 

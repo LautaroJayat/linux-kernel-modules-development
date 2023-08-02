@@ -1,0 +1,57 @@
+#! /bin/python3
+import os
+import fcntl
+import signal
+from multiprocessing import Process
+from time import sleep
+
+def read():
+    text=""
+    somethingToRead = False
+    retries = 0
+    def sigioHandler(signum, frame):
+            print(f"\033[0;32m\nUSERLAND | READER | PID -> {os.getpid()} | got SIGIO from kernelspace\n\033[0;0m")
+            nonlocal somethingToRead
+            somethingToRead = True
+
+    signal.signal(signalnum=29, handler=sigioHandler)
+    fd = os.open("/dev/async_n0", os.O_RDONLY)
+
+    fcntl.fcntl(fd, fcntl.F_SETOWN, os.getpid())
+    
+    currentFlags = fcntl.fcntl(fd, fcntl.F_GETFL)
+    
+    fcntl.fcntl(fd, fcntl.F_SETFL, currentFlags | fcntl.FASYNC)
+    
+    while "stop reading" not in text:
+        retries+=1
+        sleep(1)
+        if somethingToRead == False:
+            print(f"\033[0;32m\nUSERLAND | READER | PID -> {os.getpid()} | Nothing to read yet\n\033[0;0m")
+            continue
+        text = os.read(fd, 256).decode("utf-8")
+        print(f"\033[0;32m\nUSERLAND | READER | PID -> {os.getpid()} | Read: {text}\n\033[0;0m")
+        somethingToRead = False
+    print(f"\033[0;32m\nUSERLAND | READER | PID -> {os.getpid()} | Got '{text}' I guess I will stop...\n\033[0;0m")
+    os.close(fd)
+
+def write():
+    sleep(1)
+    print(f"\033[1;31m\nUSERLAND | WRITER | PID -> {os.getpid()} | About to start\n\033[0;0m")
+
+    toWrite = ["hey, how are you?", "stop reading"]
+    i = 0
+    fd = os.open("/dev/async_n0", os.O_WRONLY)
+    while i < 2:
+        os.write(fd, toWrite[i].encode("utf-8"))
+        i+=1
+        sleep(2)
+    os.close(fd)
+
+r = Process(target=read)
+w = Process(target=write)
+
+
+r.start()
+w.start()
+w.join()
