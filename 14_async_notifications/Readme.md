@@ -305,3 +305,8 @@ r.start()
 w.start()
 w.join()
 ```
+
+After testing we got the following:
+
+![async notifications example](./async_example.png)
+
